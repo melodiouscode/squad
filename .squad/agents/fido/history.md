@@ -223,3 +223,7 @@ Reviewed 9 community PRs (8 from tamirdresher, 1 from eric-vanartsdalen). Key fi
 
 **Learning:** Community contributors consistently struggle with two things: (a) scoped npm package names in changesets, and (b) monorepo file placement. Both are preventable with better contributor docs.
 
+### Cost policy coverage hardening (2026-05-04)
+
+Model catalog tests must distinguish active vs deprecated IDs now that the catalog carries billing metadata and backward-compat entries. The selector cost-policy path is best tested through `resolveModel()` with `config.models.costPolicy` plus `sessionCostPolicy`, and by direct helper coverage for `buildEffectiveCostPolicy()` / `finalizeResolvedModel()` on unknown or metadata-light models.
+

@@ -4,6 +4,10 @@
 
 ## Learnings
 
+### Model selector cost policy hook (2026-05-04)
+
+`packages/squad-sdk/src/agents/model-selector.ts` now runs in two phases: base layered selection first, then a catalog-backed cost-policy finalization pass. Explicit sources stay warn-and-allow over the ceiling, while automatic sources can downgrade tiers, prefer included same-tier models, and prune fallback chains using `githubCategory`, `includedInCopilot`, and `availability` from `ModelInfo`.
+
 ### Template Brady contamination fix (#977) (2026-05-01)
 
 **Context:** Template files (squad.agent.md, init-mode/SKILL.md) contained hardcoded "Brady" examples in greetings, routing examples, and comments. LLMs treated these as patterns, greeting every user as "Brady" regardless of their actual `git config user.name`.

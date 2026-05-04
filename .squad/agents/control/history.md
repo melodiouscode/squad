@@ -51,3 +51,8 @@ There is no `claude-haiku-4.6`. The latest haiku is `claude-haiku-4.5`. Never bu
 - `scripts/sync-templates.mjs` handles the rename: mirror targets get `.template` suffix, `.github/agents/` target keeps `.md`.
 - All code reading templates for init/upgrade/consult (SDK `init.ts`, CLI `upgrade.ts`, CLI `templates.ts`, SDK `consult.ts`) references `squad.agent.md.template` as the source filename.
 - The `TEMPLATE_MANIFEST` in `templates.ts` uses `source: 'squad.agent.md.template'` but `destination: '../.github/agents/squad.agent.md'` — source and target names differ.
+
+### GitHub Catalog vs Internal Tiering (2026-05-04)
+- `githubCategory` is billing metadata (`lightweight` / `versatile` / `powerful`) and must stay separate from Squad's internal `ModelTier` (`fast` / `standard` / `premium`). Do not collapse them into one enum.
+- `ModelPricing` remains per-token USD in `models.ts`, so GitHub catalog prices published per million tokens must be converted before storing in `pricing`.
+- `packages/squad-sdk/src/config/models.ts`, `packages/squad-sdk/src/runtime/constants.ts`, and `packages/squad-sdk/src/runtime/config.ts` should move together when cost policy or fallback-chain semantics change.
