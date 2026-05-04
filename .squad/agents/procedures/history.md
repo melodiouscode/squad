@@ -214,3 +214,13 @@ Also updated: examples section (showing `name` + `description` pairs), anti-patt
 
 **Pattern:** When trimming agent instructions, extract domain-specific reference content to skills (lazy-loaded on demand) and keep the main instructions file as a routing/workflow document. Skills are the right abstraction for "read this when you touch X" — they don't consume tokens until needed.
 
+### 2026-05-04: Cost policy + GitHub AI Credits catalog refresh
+
+**Task:** Applied the new GitHub AI Credits model taxonomy to coordinator and model-selection guidance.
+
+**What changed:**
+- Replaced the coordinator's Per-Agent Model Selection section with the cost-policy draft from `cost-policy-instructions.md`
+- Added the post-resolution `costPolicy` veto step, GitHub AI Credits category tables, updated fallback chains, updated role defaults, and policy-aware spawn acknowledgment examples
+- Replaced the model-selection skill content with the same authoritative text in both `.squad/skills/` and `.copilot/skills/`, then relied on template sync for packaged skill copies
+
+**Pattern:** Keep `.squad-templates/squad.agent.md` as the canonical coordinator source and `.squad/skills/model-selection/SKILL.md` as the canonical packaged skill source. When the model catalog changes, update every fallback chain, valid-model list, role mapping, and conversation phrase table in the same pass so policy text cannot drift.
